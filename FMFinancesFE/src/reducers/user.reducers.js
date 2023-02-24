@@ -10,6 +10,7 @@ const initialState = {
   phoneNumber: null,
   avatar: null,
   isLoading: false,
+  isLogin: false,
 };
 
 export const UserReduces = createSlice({
@@ -19,6 +20,7 @@ export const UserReduces = createSlice({
     builder
       .addCase(googleLogin.pending, (state) => {
         state.isLoading = true;
+        state.isLogin = false;
       })
       .addCase(googleLogin.fulfilled, (state, action) => {
         state.id = action.payload?.id;
@@ -27,11 +29,41 @@ export const UserReduces = createSlice({
         state.phoneNumber = action.payload?.phoneNumber;
         state.avatar = action.payload?.avatar;
         state.isLoading = false;
+        state.isLogin = true;
       })
       .addCase(googleLogin.rejected, (state) => {
         state.isLoading = false;
+        state.isLogin = false;
+      })
+      .addCase(loginWithJWT.pending, (state) => {
+        state.isLoading = true;
+        state.isLogin = false;
+      })
+      .addCase(loginWithJWT.fulfilled, (state, action) => {
+        state.id = action.payload?.id;
+        state.email = action.payload?.email;
+        state.username = action.payload?.username;
+        state.phoneNumber = action.payload?.phoneNumber;
+        state.avatar = action.payload?.avatar;
+        state.isLoading = false;
+        state.isLogin = true;
+      })
+      .addCase(loginWithJWT.rejected, (state) => {
+        state.isLoading = false;
+        state.isLogin = false;
       });
   },
+});
+
+export const loginWithJWT = createAsyncThunk('user/login/jwt', async (data) => {
+  const res = await AuthApi.loginWithJWT(data);
+  if (res.success) {
+    const data = {
+      id: res.data._id,
+      ...res.data,
+    };
+    return data;
+  }
 });
 
 export const googleLogin = createAsyncThunk('user/login/google', async () => {

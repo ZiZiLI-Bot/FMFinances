@@ -2,11 +2,18 @@ import { Box, Button, Text, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import ROUTER from '../../constants/router.constants';
 import { googleLogin } from '../../reducers/user.reducers';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
+  const handlerLoginGoogle = async () => {
+    await dispatch(googleLogin());
+    navigate(ROUTER.HOME);
+  };
   return (
     <Box>
       <Text fontSize='4xl' fontWeight='600' textAlign='center' mt={44}>
@@ -18,7 +25,7 @@ export default function LoginPage() {
       <VStack spacing={5} mt={16}>
         <Button
           w={260}
-          onClick={() => dispatch(googleLogin())}
+          onClick={handlerLoginGoogle}
           leftIcon={<FaGoogle size={20} />}
           colorScheme='whatsapp'
           variant='outline'

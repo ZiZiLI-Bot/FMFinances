@@ -8,6 +8,10 @@ const AuthApi = {
     const url = '/login';
     return await axiosClient.post(url, data);
   },
+  loginWithJWT: async () => {
+    const url = '/loginWithJWT';
+    return await axiosClient.get(url);
+  },
   getUserByEmail: async (data) => {
     const url = `/getUserByEmail/${data.email}`;
     return await axiosClient.get(url);
