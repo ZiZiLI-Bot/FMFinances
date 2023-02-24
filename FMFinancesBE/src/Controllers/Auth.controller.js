@@ -107,6 +107,19 @@ const AuthController = {
     };
     return success(res, data, 200, 'Token refreshed successfully');
   },
+  loginWithJWT: async (req, res) => {
+    const token = req.header('authorization');
+    const { email } = await AuthServices.verifyToken(token);
+    const user = await AuthModule.findOne({ email });
+    if (!user) return error(res, null, 400, 'User not found');
+    return success(res, user, 200, 'User found');
+  },
+  getUserByEmail: async (req, res) => {
+    const { email } = req.params;
+    const user = await AuthModule.findOne({ email });
+    if (!user) return error(res, null, 400, 'User not found');
+    return success(res, user, 200, 'User found');
+  },
 };
 
 export default AuthController;

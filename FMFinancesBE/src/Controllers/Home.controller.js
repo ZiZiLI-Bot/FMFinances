@@ -27,7 +27,6 @@ const HomeController = {
     return success(res, home, 200, 'Create home success');
   },
   addMemberToHome: async (req, res) => {
-    // const {  } = req.params;
     const { uid, homeId } = req.body;
     const home = await HomeModule.findById(homeId);
     if (!home) return error(res, null, 200, 'Home not found');
@@ -39,6 +38,7 @@ const HomeController = {
         uid1: member,
         uid2: uid,
         totalMoney: 0,
+        billOwnerId: uid,
       });
     });
     await Promise.all(createDebit).catch(() => {

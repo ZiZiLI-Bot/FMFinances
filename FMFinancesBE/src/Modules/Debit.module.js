@@ -13,6 +13,9 @@ const DebitSchema = new Schema(
     uid2: {
       type: Schema.Types.ObjectId,
     },
+    billOwnerId: {
+      type: Schema.Types.ObjectId,
+    },
     totalMoney: {
       type: Number,
     },
