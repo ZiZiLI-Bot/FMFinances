@@ -58,6 +58,7 @@ export const UserReduces = createSlice({
 export const loginWithJWT = createAsyncThunk('user/login/jwt', async (data) => {
   const res = await AuthApi.loginWithJWT(data);
   if (res.success) {
+    AuthStorage.setKey('uid', res.data._id);
     const data = {
       id: res.data._id,
       ...res.data,
@@ -83,6 +84,7 @@ export const googleLogin = createAsyncThunk('user/login/google', async () => {
         ...userData,
       };
       AuthStorage.setKey('token', res.data.token);
+      AuthStorage.setKey('uid', res.data._id);
       return infoData;
     }
   } else {
@@ -95,6 +97,7 @@ export const googleLogin = createAsyncThunk('user/login/google', async () => {
           ...userData,
         };
         AuthStorage.setKey('token', res.data.token);
+        AuthStorage.setKey('uid', res.data._id);
         return infoData;
       }
     }

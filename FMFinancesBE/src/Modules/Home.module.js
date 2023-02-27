@@ -10,6 +10,9 @@ const HomeSchema = new Schema(
     members: {
       type: Array,
     },
+    avatar: {
+      type: String,
+    },
     joinId: {
       type: String,
     },

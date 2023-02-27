@@ -27,20 +27,20 @@ export default function LoginPage() {
           w={260}
           onClick={handlerLoginGoogle}
           leftIcon={<FaGoogle size={20} />}
-          colorScheme='whatsapp'
-          variant='outline'
+          colorScheme='messenger'
+          // variant='outline'
           isLoading={user.isLoading}
           loadingText='Đang sử lý'
         >
-          Đăng nhập bằng Google
+          <Text>Đăng nhập bằng Google</Text>
         </Button>
         <Button
           w={260}
           isLoading={user.isLoading}
           loadingText='Đang sử lý'
           leftIcon={<FaFacebookSquare size={20} />}
-          colorScheme='linkedin'
-          variant='outline'
+          colorScheme='facebook'
+          // variant='outline'
         >
           Đăng nhập bằng Facebook
         </Button>

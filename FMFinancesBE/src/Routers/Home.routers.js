@@ -5,7 +5,8 @@ const HomeRouter = express.Router();
 
 HomeRouter.get('/home/:id', HomeController.getHome);
 HomeRouter.get('/getAllHome', HomeController.getAllHome);
+HomeRouter.get('/getHomeByUserId/:id', HomeController.getHomeByUserId);
 HomeRouter.post('/createHome', HomeController.createHome);
-HomeRouter.post('/addMemberToHome', HomeController.addMemberToHome);
+HomeRouter.put('/addMemberToHome', HomeController.addMemberToHome);
 
 export default HomeRouter;

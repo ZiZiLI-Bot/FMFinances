@@ -17,14 +17,22 @@ const HomeController = {
     return success(res, home, 200, 'Get all home success');
   },
   createHome: async (req, res) => {
-    const { name, joinId, uidCall } = req.body;
+    const { name, joinId, uidCall, avatar } = req.body;
     const home = await HomeModule.create({
       name,
       members: [uidCall],
+      avatar,
       joinId,
     });
     if (!home) return error(res, null, 200, 'Create home failed');
     return success(res, home, 200, 'Create home success');
+  },
+  getHomeByUserId: async (req, res) => {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) return error(res, null, 200, 'User is not valid');
+    const home = await HomeModule.find({ members: id });
+    if (!home) return error(res, null, 200, 'Home not found');
+    return success(res, home, 200, 'Get home by user id success');
   },
   addMemberToHome: async (req, res) => {
     const { uid, homeId } = req.body;

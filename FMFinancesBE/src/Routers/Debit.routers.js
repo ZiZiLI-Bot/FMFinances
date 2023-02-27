@@ -9,7 +9,7 @@ DebitRouter.get('/getDebitByHomeId/:id', DebitController.getDebitByHomeId);
 DebitRouter.get('/getAllDebitByHomeId/:id', DebitController.getAllDebitByHomeId);
 DebitRouter.get('/getDebitByUserId', DebitController.getDebitByUid);
 // DebitRouter.post('/createDebit', DebitController.createDebit);
-DebitRouter.get('/getAllDebitExistByUid', DebitController.getAllDebitExistByUid);
+DebitRouter.post('/getAllDebitExistByUid', DebitController.getAllDebitExistByUid);
 DebitRouter.put('/updateDebit', DebitController.updateDebit);
 
 export default DebitRouter;
