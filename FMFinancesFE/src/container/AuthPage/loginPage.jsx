@@ -1,9 +1,10 @@
 import { Box, Button, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ROUTER from '../../constants/router.constants';
+import AuthStorage from '../../helper/AuthStorage';
 import { googleLogin } from '../../reducers/user.reducers';
 
 export default function LoginPage() {
@@ -14,6 +15,11 @@ export default function LoginPage() {
     await dispatch(googleLogin());
     navigate(ROUTER.HOME);
   };
+  useEffect(() => {
+    if (AuthStorage.getKey('token')) {
+      navigate(ROUTER.HOME);
+    }
+  }, []);
   return (
     <Box>
       <Text fontSize='4xl' fontWeight='600' textAlign='center' mt={44}>

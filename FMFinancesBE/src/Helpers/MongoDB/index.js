@@ -4,7 +4,7 @@ dotenv.config();
 
 mongoose.set('strictQuery', true);
 mongoose
-  .connect(process.env.DB_URL, {
+  .connect(process.env.DB_URL_FMFINANCES, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

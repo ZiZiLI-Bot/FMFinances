@@ -3,7 +3,7 @@ import { parse, stringify } from 'qs';
 import AuthStorage from '../helper/AuthStorage';
 
 const axiosClient = axios.create({
-  baseURL: 'http://localhost:3333/api',
+  baseURL: import.meta.env.VITE_URL_BE_FMFINANCE || process.env.VITE_URL_BE_FMFINANCE,
   headers: {
     'content-type': 'application/json',
   },

@@ -3,8 +3,8 @@ import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
-const accessTokenLife = process.env.ACCESS_TOKEN_LIFE;
-const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
+const accessTokenLife = process.env.ACCESS_TOKEN_LIFE_FMPJ;
+const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET_FMPJ;
 
 const AuthServices = {
   generateToken: async (parser) => {

@@ -14,7 +14,7 @@ const __dirname = dirname(__filename);
 global.__basedir = __dirname;
 
 dotenv.config();
-const post = process.env.PORT;
+const post = process.env.PORT_FMFINANCES;
 
 const app = express();
 app.use(logger('dev'));
